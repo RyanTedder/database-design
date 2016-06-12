@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>雇员信息列表</title>
+<script type="text/javascript">
+function confirmDel(val)
+{
+return	window.confirm("是否确认删除id为"+val+"的用户？");
+}
+function confirmCha(val)
+{
+return	window.confirm("是否确认修改id为"+val+"的用户？");
+}
+</script>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+</head>
+
+&nbsp; &nbsp; &nbsp; &nbsp; <a href="login.php"><font color='red'>安全退出</font></a>
+&nbsp; &nbsp; <a href="empManage.php"><font color='blue'>返回上一层</font></a>
+<hr/>
+
+<?php
+require_once 'EmpService.class.php';
+require_once 'FenyePage.class.php';
+
+//创建对象实例
+$empService=new EmpService();
+
+//先看看用户要分页还是删除某个雇员
+if(!empty($_GET['flag']))
+{
+	$id=$_GET['id'];
+	if($_GET['flag']==del)
+	{
+$empService->delEmpById($id);}
+else{
+$empService->chaEmpById($id);
+}
+}
+
+
+//创建一个分页对象
+$fenyePage=new FenyePage();
+$fenyePage->pageNow=1;
+$fenyePage->pageSize=8;
+$fenyePage->gotoUrl="empList.php";
+
+//分页功能
+//根据用户的点击来修改当前页面值
+if(!empty($_GET['pageNow']))
+{
+	$fenyePage->pageNow=$_GET['pageNow'];
+}
+
+$empService->getFenyePage($fenyePage);
+
+echo "<table border='1px' bordercolor='blue' align='center' cellspacing='0px'  width='700px'>";
+echo "<tr><th>id</th><th>name</th><th>grade</th><th>email</th><th>salary</th><th>删除用户</th><th>修改用户</th></tr>";
+
+for($i=0;$i<count($fenyePage->res_array);$i++)
+{
+	$row=$fenyePage->res_array[$i];
+echo "<tr><td>{$row['id']}</td><td>{$row['name']}</td><td>{$row['grade']}</td><td>{$row['email']}</td><td>{$row['salary']}</td><td><a onclick='return  confirmDel({$row['id']})' href='empProcess.php?id={$row['id']}&flag=del'>删除用户</a></td><td><a onclick='return  confirmCha({$row['id']})' href='updateEmpUI.php?id={$row['id']}&flag=cha'>修改用户</a></td></tr>";
+}
+echo "<center><h1><font color='green'>★雇员信息列表★</font></h1></center>";
+echo "</table>";
+echo "<br/><center>";
+echo "<hr/>";
+//显示分页信息
+echo $fenyePage->navigate;
+echo "</center>";
+echo "<br/>"; 
+?>
+<form action="empList.php" method="get">
+<center>
+<font color="red">跳转到:</font>&nbsp;<input type="text" name="pageNow" placeholder="请输入指定页面"/>&nbsp;
+<input type="image" src="go.png" width="40px"/>
+</center>
+</form>
+
+</html>

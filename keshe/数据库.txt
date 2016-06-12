@@ -1,0 +1,80 @@
+管理员表
+admin
+create table admin(
+id int primary key,
+name varchar(32) not null,
+password varchar(128) not null
+);
+
+雇员表 emp
+create table emp(
+id int primary key auto_increment,
+name varchar(64) not null,
+grade tinyint,
+email varchar(64) not null,
+salary float
+);
+
+表创建到MySQL数据库
+
+添加初始化数据
+
+insert into emp (name,grade,email,salary) values('曹洪基',1,'1318074274@qq.com',3000); 
+insert into emp (name,grade,email,salary) values('李鹏飞',3,'13180747876@qq.com',6000); 
+insert into emp (name,grade,email,salary) values('刘彪',4,'1318073474@qq.com',3800); 
+insert into emp (name,grade,email,salary) values('黄海',1,'4456773474@qq.com',3800); 
+insert into emp (name,grade,email,salary) values('涛涛',2,'1318073474@qq.com',2500); 
+insert into emp (name,grade,email,salary) values('夏德攀',3,'1298073474@qq.com',3800); 
+insert into emp (name,grade,email,salary) values('郭超',1,'1318073474@qq.com',4800); 
+insert into emp (name,grade,email,salary) values('谢兆南',2,'1318073474@qq.com',3800); 
+insert into emp (name,grade,email,salary) values('邵聪帅',2,'5618043474@qq.com',5900); 
+insert into emp (name,grade,email,salary) values('杨立飞',4,'1318073474@qq.com',9800); 
+insert into emp (name,grade,email,salary) values('秦丽娜',2,'1318073474@qq.com',6400); 
+insert into emp (name,grade,email,salary) values('黄田',3,'2218073474@qq.com',3800); 
+insert into emp (name,grade,email,salary) values('王永乐',2,'1319073474@qq.com',1900); 
+
+管理员
+insert into admin values(100,'admin',md5('admin'));
+insert into admin values(200,'CYK',md5('1995'));
+4.代码阶段
+准备素材（图片，静态页面，文字.....）
+要求登陆不成功,在登录页面显示红色提示信息。
+在管理页面提供超链接，可以退出系统。
+
+1.不到数据库验证是否登陆成功
+2.到数据库验证是否登陆成功
+3.在管理页面显示登陆成功的人名字
+4.在用户列表页面显示所有用户信息
+5.考虑分页显示用户信息
+..mvc模式下的分页
+
+6.网站结构的问题
+7.增加一个新的功能
+删除雇员信息
+
+使用MVC开发模式完成雇员的增删改查
+先画出程序框架图
+
+思考：是否每一个请求，都需要对应一个控制器？
+
+原则：没有必要一对一，可以把同一逻辑的请求，提交给一个控制器即可。
+
+mvc模式：强制把数据的输入，数据的处理，数据的显示分开
+
+
+1.在什么文件中去封装我们的分页代码->EmpService.class.php
+为了完成分页我们的empList.php 文件需要两个重要的数据
+$pageCount和$$res2
+
+{
+在分页中几个变量是必须的
+$pageNow
+$pageSize
+$rowCount
+$pageCount
+}
+测试一下分页的效率，在实际开发中，数据量很大，
+需要测试数据量很大时，是否可以满足用户需求，模拟大量数据
+
+mysql 自我复制
+insert into emp(name,grade,email,salary) select name,grade,email,salary from emp;

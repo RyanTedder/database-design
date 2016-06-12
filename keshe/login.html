@@ -1,0 +1,85 @@
+<?php
+require_once 'common.php';
+?>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<title>数据库登陆界面</title>
+<link rel="stylesheet" type="text/css" href="login.css"/>
+<script language="javascript">
+function fun1(){
+window.alert("Welcome!");
+}
+function fun2(){
+window.alert("(⊙v⊙)");
+}
+</script>
+</head>
+<body>
+<div>
+<img src="tq.png" alt="导航界面" onclick="fun2()"/>
+</div>
+<!--<div class="d2">
+<img src="wel.gif" width="300px" alt="Welcome" onclick="fun1()"/>
+</div>-->
+<div class="d1">
+<center><h2><font color="blue">★欢迎进入雇员管理系统★</font></h2></center>
+<form action="loginProcess.php" method="post">
+<table align="center" bordercolor="red">
+<tr>
+<td align="left"><font color="red"><h4>账&nbsp;&nbsp;&nbsp;&nbsp;号</h4></font></td>
+<td align="left">*</td>
+<td><input type="text" size="19" name="id" placeholder="请输入账号"/></td>
+</tr>
+<tr>
+<td align="left"><font color="red"><h4>密&nbsp;&nbsp;&nbsp;&nbsp;码</h4></font></td>
+<td align="left">*</td>
+<td><input type="password" name="password" placeholder="请输入密码"/></td>
+</tr>
+<tr>
+<td align="left"><font color="red"><h4>验证码</h4></font></td>
+<td align="left">*</td>
+<td><input type="text" placeholder="请输入图中字符" size="19" name="check"/></td>
+<td><img src="checkcode.php" onclick="this.src='checkcode.php?aa='+Math.random()"/></td>
+</tr>
+<tr>
+<td align="right"><input type="image" src="dl.png"/></td>
+<td align="center">&nbsp;</td>
+<td align="right"><input type="reset" value="重填"/></td>
+</tr>
+</table>
+</form>
+
+<?php
+if(!empty($_GET['errno'])){
+	//接受错误编号
+	$errno=$_GET['errno'];
+	if($errno==1)
+	{
+		echo "<br/><font color='red' size='3'>你的用户名或者密码错误!</font>";
+	}
+	else{
+		echo "<br/><font color='red' size='3'>你的验证码错误!</font>";
+	}
+}
+?>
+
+</div>
+<!--<div class="d2">
+<img src="wel.gif" width="300px" alt="Welcome" onclick="fun1()"/><br/>
+</div>
+
+<div class="d4">
+    	<span>&copy; 1995-2015 By CYKSOFT, All Rights Reserved.</span>
+</div>
+-->
+<div class="d3">
+<fieldset width="250px">
+<legend>*******************</legend>
+<font color="9C2E8D" size="3">作者：钱亦龙</font><br/>
+<font color="9C2E8D" size="3">班级：电本1301班</font><br/>
+<legend>*******************</legend>
+</fieldset>
+</div>
+</body>
+</html>

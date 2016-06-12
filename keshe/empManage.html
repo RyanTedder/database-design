@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<title>主界面</title>
+<link rel="stylesheet" type="text/css" href="empManage.css"/>
+<script language="javascript">
+function fun1(){
+window.alert("Welcome!");
+}
+function fun2(){
+window.alert("╭(╯^╰)╮");
+}
+</script>
+</head>
+<body>
+<div>
+<img src="tq.png" alt="导航界面" onclick="fun2()"/>
+</div>
+<div class="d2">
+<img src="wel.gif" width="300px" alt="Welcome" onclick="fun1()"/>
+</div>
+<div class="d1">
+<?php 
+echo "<font color='red'>欢迎用户</font>".$_GET['name']."<font color='red'>登录成功！</font>";
+//require_once 'common.php';
+//getLastTime();
+?>
+<center><h1><font color='red'>★主界面★</font><h1></center>
+<div>
+<ul>
+<li><a href="empList.php"><font size="5">查询用户</font></a></li>
+<li><a href="addEmp.php"><font size="5">添加用户</font></a></li>
+<li><a href="login.php"><font size="5">安全退出</font></a></li>
+</ul>
+</div>
+</div>
+<div class="d2">
+<img src="wel.gif" width="300px" alt="Welcome" onclick="fun1()"/>
+</div>
+</body>
+</html>

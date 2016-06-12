@@ -1,0 +1,24 @@
+<?php
+$checkcode="";
+for($i=0;$i<4;$i++)
+{
+	$checkcode.=dechex(rand(1,15));
+}
+//创建画布
+$image1=imagecreatetruecolor(100,25);
+//存入到
+session_start();
+$_SESSION['checkcode']=$checkcode;
+//创建颜色
+$white=imagecolorallocate($image1,255,255,255);
+//画出干扰线
+for($i=0;$i<10;$i++)
+{
+	imageline($image1,rand(0,100),rand(0,25),rand(0,100),rand(0,25),imagecolorallocate($image1,rand(0,255),rand(0,255),rand(0,255)));
+}
+//画出数字
+imagestring($image1,rand(1,5),rand(20,60),rand(5,15),$checkcode,$white);
+header("content-type:image/png");
+imagepng($image1);
+imagedestroy($image1);
+?>

@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<script language="javascript">
+function fun(){
+window.alert("(*^__^*)");
+}
+</script>
+<title>添加雇员信息</title>
+</head>
+<img onclick="fun()" src="tq.png"/>
+&nbsp; &nbsp; &nbsp; &nbsp; <a href="login.php"><font color='red'>安全退出</font></a>
+&nbsp; &nbsp; <a href="empManage.php"><font color='blue'>返回上一层</font></a>
+<hr/>
+<form action="empProcess.php" method="post">
+<table align="center">
+<tr><th colspan="2"><font size="5" color="red">★请添加信息★</font></th></tr>
+<tr><th align="center"><font size="4" color="green">姓名*</font></th><td><input type="text" name="name"/></td></tr>
+<tr><th align="center"><font size="4" color="green">级别*</font></th><td><input type="text" name="grade"/></td></tr>
+<tr><th align="center"><font size="4" color="green">邮箱*</font></th><td><input type="text" name="email"/></td></tr>
+<tr><th align="center"><font size="4" color="green">工资*</font></th><td><input type="text" name="salary"/></td></tr>
+<input type="hidden" name="flag" value="addemp"/>
+<tr><td><input type="submit" value="添加用户"/></td><td align="right"><input  type="reset" value="重新填写"></td></tr>
+</table>
+</form>
+</html>

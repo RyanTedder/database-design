@@ -1,0 +1,17 @@
+<?php
+//require_once 'SqlHelper.class.php';
+require_once 'EmpService.class.php';
+
+//$sqlHelper=new SqlHelper();
+//$arr=$sqlHelper->execute_dql2("select * from emp limit 2,8");
+$id=$_POST['id'];
+    $name=$_POST['name'];
+    $grade=$_POST['grade'];
+	$email=$_POST['email'];
+	$salary=$_POST['salary'];
+$empService=new EmpService();
+$arr1=$empService->getEmpListByPage(3,10);
+$arr2=$empService->updateEmp($id,$name,$grade,$email,$salary);
+print_r($arr1);
+print_r($arr2);
+?>
